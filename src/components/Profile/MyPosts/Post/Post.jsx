@@ -6,6 +6,9 @@ const Post = (props) => {
         <div className={style.item}>
             <img src='https://cdn.pixabay.com/photo/2016/09/22/16/38/avatar-1687700_960_720.jpg'></img>
             {props.message}
+            <div>
+                Like: {props.likeCount}
+            </div>
         </div>
     )
 }
