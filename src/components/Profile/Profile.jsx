@@ -10,7 +10,7 @@ import Post from "./MyPosts/Post/Post";
 const Profile = (props) => {
     return <div>
         <ProfileInfo/>
-        <MyPosts posts={props.posts} addPost={props.addPost} updatePostText={props.updatePostText}></MyPosts>
+        <MyPosts posts={props.posts} dispatch={props.dispatch}></MyPosts>
     </div>
 }
 
