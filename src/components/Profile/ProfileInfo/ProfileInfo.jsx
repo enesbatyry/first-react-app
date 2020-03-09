@@ -1,15 +1,20 @@
 import React from 'react';
 import style from './ProfileInfo.module.css'
-
-const ProfileInfo = () => {
+import Preloader from "../../../Common/Preloader";
+import ProfileStatus from './ProfileStatus'
+const ProfileInfo = (props) => {
+    if (!props.profile){
+        return <Preloader />
+    }
     return (
         <div>
-            <div>
-                <img className={style.profile_img}
-                     src='https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'></img>
-            </div>
             <div className={style.descriptionBlock}>
-                ava + description
+                <img src={props.profile.photos.large}/>
+                <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus}/>
+                <span>----------------------------------</span>
+                <div>Обо мне: <span>{props.profile.aboutMe}</span></div>
+                <div>В поисках работы?: <span>{props.profile.lookingForAJob? 'да':'нет'} </span></div>
+                <div>Полное имя: <span>{props.profile.fullName} </span></div>
             </div>
         </div>
     );

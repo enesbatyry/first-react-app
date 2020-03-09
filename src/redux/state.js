@@ -1,5 +1,6 @@
-const ADD_POST = 'ADD-POST'
-const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT'
+import {dialogsReducer} from "./DialogsReducer";
+import {navbarReducer} from "./NavBarReducer";
+import {profileReducer} from "./ProfileReducer";
 
 export let store = {
     rendererEntireTree() {
@@ -27,7 +28,8 @@ export let store = {
                 {id: 2, message: 'My name is Enes'},
                 {id: 3, message: 'Wow it is beautiful'},
                 {id: 4, message: 'Come on!'}
-            ]
+            ],
+            newMessageText: ''
         },
 
     },
@@ -37,19 +39,9 @@ export let store = {
     },
 
     dispatch(action){
-      if (action.type === 'ADD-POST'){
-          let post = {
-              id: 5,
-              message: this._state.profilePage.newPostText,
-              likeCount: 0
-          };
-          this._state.profilePage.posts.push(post);
-          this.rendererEntireTree(this._state);
-
-      }else if (action.type === 'UPDATE-POST-TEXT'){
-          this._state.profilePage.newPostText = action.newText;
-          this.rendererEntireTree(this._state);
-      }
+        this._state =  dialogsReducer(this._state, action);
+        this._state =  profileReducer(this._state, action);
+        this._state =  navbarReducer(this._state, action);
     },
 
     subscribe(observer) {
@@ -57,8 +49,6 @@ export let store = {
     }
 }
 
-export const addPostActionCreator = () => ({type:ADD_POST})
-export const updatePostTextActionCreator = (text) => ({type:UPDATE_POST_TEXT, newText: text})
 
 
 export default store;
