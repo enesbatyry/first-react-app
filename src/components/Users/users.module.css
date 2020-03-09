@@ -1,0 +1,20 @@
+.ava img{
+    width:100px;
+    height: 100px;
+}
+
+.selected{
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #000;
+}
+
+ul{
+    display: inline-block;
+    text-decoration: none;
+    list-style: none;
+}
+
+li{
+    color: #555;
+}
